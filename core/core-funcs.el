@@ -334,8 +334,7 @@ only switches between the current layout's buffers."
             (usefulp (if (bound-and-true-p spacemacs-useful-buffers-restrict-spc-tab)
                          (symbol-function 'spacemacs/useful-buffer-p)
                        #'always))
-            (predicate #'always)
-            (default (list (other-buffer) nil nil)))
+            (predicate #'always))
 
         (when (bound-and-true-p spacemacs-layouts-restrict-spc-tab)
           (let ((buffer-list (persp-buffer-list)))
@@ -348,9 +347,10 @@ only switches between the current layout's buffers."
                            (funcall usefulp buffer)
                            (funcall predicate buffer))))
                   (window-prev-buffers window)
-                  default))
+                  (list nil nil nil)))
     (if (not buf)
-        (message "Last buffer not found.")
+        (with-selected-window (or window (selected-window))
+          (next-buffer))
       (set-window-buffer-start-and-point window buf start pos))))
 
 (defun spacemacs/alternate-window ()
