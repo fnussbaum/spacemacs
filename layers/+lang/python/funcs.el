@@ -421,6 +421,23 @@ Bind formatter to '==' for LSP and '='for all other backends."
     ('lsp (lsp-format-buffer))
     (code (message "Unknown formatter: %S" code))))
 
+(defun spacemacs//python-lsp-set-up-format-on-save ()
+  (when (and python-format-on-save
+             (eq python-formatter 'lsp)
+             (eq python-lsp-server 'pylsp))
+    (add-hook
+     'python-mode-hook
+     'spacemacs//python-lsp-set-up-format-on-save-local)))
+
+(defun spacemacs//python-lsp-set-up-format-on-save-local ()
+  (add-hook 'before-save-hook 'spacemacs//python-lsp-format-on-save nil t))
+
+(defun spacemacs//python-lsp-format-on-save ()
+  (when (and python-format-on-save
+             (eq python-formatter 'lsp)
+             (eq python-lsp-server 'pylsp))
+    (lsp-format-buffer)))
+
 
 ;; REPL
 (defun spacemacs/python-shell-send-block (&optional arg)

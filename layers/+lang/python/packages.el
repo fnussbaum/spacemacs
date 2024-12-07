@@ -374,6 +374,7 @@
     (spacemacs/register-repl 'python
                              'spacemacs/python-start-or-switch-repl "python")
     (spacemacs//bind-python-repl-keys)
+    (spacemacs//python-lsp-set-up-format-on-save)
     (add-hook 'python-mode-local-vars-hook 'spacemacs//python-setup-backend)
     (add-hook 'python-mode-hook 'spacemacs//python-default)
     :config
