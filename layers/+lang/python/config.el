@@ -28,8 +28,8 @@
 
 (defvar python-backend (if (configuration-layer/layer-used-p 'lsp) 'lsp 'anaconda)
   "The backend to use for IDE features.
-Possible values are `anaconda'and `lsp'.
-If `nil' then `anaconda' is the default backend unless `lsp' layer is used.")
+Possible values are `anaconda' and `lsp'.
+If `nil' then `anaconda' is the default backend unless the `lsp' layer is used.")
 (put 'python-backend 'safe-local-variable #'symbolp)
 
 (defvar python-lsp-server 'pylsp
