@@ -52,7 +52,7 @@ If `nil' then `anaconda' is the default backend unless the `lsp' layer is used."
       'lsp
     'yapf)
   "The formatter to use. Possible values are `yapf', `black' and `lsp'.
-If nil then `yapf' is the default formatter unless both the `lsp' layer is used,
+The default formatter is `yapf' unless both the `lsp' layer is used,
 and `python-lsp-server' is `pylsp' (pyright does not support formatting).")
 
 (defvar python-format-on-save nil
