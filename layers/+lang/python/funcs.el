@@ -408,7 +408,10 @@ to be called for each testrunner. "
 Bind formatter to '==' for LSP and '='for all other backends."
   (when (and (eq python-formatter 'lsp)
              (eq python-lsp-server 'pyright))
-    (user-error "Configuration error: `python-formatter' is `lsp', but `python-lsp-server' is `pyright', which does not support formatting."))
+    (display-warning
+     '(spacemacs python)
+     "Configuration error: `python-formatter' is `lsp', but `python-lsp-server' is `pyright', which does not support formatting."
+     :error))
   (spacemacs/set-leader-keys-for-major-mode 'python-mode
     (if (eq python-backend 'lsp)
         "=="
