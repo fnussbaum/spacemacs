@@ -331,16 +331,16 @@ only switches between the current layout's buffers."
   (interactive)
   (cl-destructuring-bind (buf start pos)
       (let ((my-buffer (window-buffer window))
-            (usefulp (or (symbol-function 'spacemacs/useful-buffer-p) #'always))
+            (usefulp (if (bound-and-true-p spacemacs-useful-buffers-restrict-spc-tab)
+                         (symbol-function 'spacemacs/useful-buffer-p)
+                       #'always))
             (predicate #'always)
             (default (list (other-buffer) nil nil)))
 
         (when (bound-and-true-p spacemacs-layouts-restrict-spc-tab)
           (let ((buffer-list (persp-buffer-list)))
-            ;; find buffer of the same persp in window, and don't try
-            ;; `other-buffer'
-            (setq predicate (lambda (buffer) (member buffer buffer-list))
-                  default (list nil nil nil))))
+            ;; find buffer of the same persp in window
+            (setq predicate (lambda (buffer) (member buffer buffer-list)))))
 
         (seq-find (lambda (it)
                     (let ((buffer (car it)))

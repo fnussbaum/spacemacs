@@ -43,6 +43,12 @@
   "Regexp used to define buffers that are useful despite matching
 `spacemacs-useless-buffers-regexp'.")
 
+(spacemacs|defc spacemacs-useful-buffers-restrict-spc-tab t
+  "When non-nil, \\[spacemacs/alternate-buffer] does not switch to
+useless buffers as defined by `spacemacs-useless-buffers-regexp'
+and `spacemacs-useful-buffers-regexp'."
+  'boolean)
+
 ;; no beep pleeeeeease ! (and no visual blinking too please)
 (setq ring-bell-function 'ignore
       visible-bell nil)
